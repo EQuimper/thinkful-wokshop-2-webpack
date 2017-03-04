@@ -1,10 +1,20 @@
 import React from 'react';
+import { Router, browserHistory, Route } from 'react-router';
 import { render } from 'react-dom';
 import './styles.css';
 
-const App = () => <h1>Hello</h1>;
+import App from './modules/app/App';
+import Games from './modules/games/Games';
+
+const routes = (
+  <Router history={browserHistory}>
+    <Route path="/" component={App}>
+      <Route path="/games" component={Games} />
+    </Route>
+  </Router>
+);
 
 render(
-  <App />,
+  routes,
   document.getElementById('app')
 );

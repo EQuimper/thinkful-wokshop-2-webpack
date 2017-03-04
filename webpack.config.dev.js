@@ -4,14 +4,20 @@ const HtmlWebpackPlugin = require('html-webpack-plugin');
 const ExtractTextPlugin = require('extract-text-webpack-plugin');
 
 const VENDORS_LIBS = [
-  'react', 'react-dom'
+  'react', 'react-dom', 'axios'
 ];
 
 module.exports = {
   devtool: 'inline-source-map',
   target: 'web',
   entry: {
-    bundle: './src/index.js',
+    bundle: [
+      'babel-polyfill',
+      // 'react-hot-loader/patch',
+      'webpack-dev-server/client?http://localhost:9000',
+      // 'webpack/hot/only-dev-server',
+      './src/index.js'
+    ],
     vendor: VENDORS_LIBS
   },
   output: {
@@ -24,9 +30,14 @@ module.exports = {
     host: 'localhost',
     historyApiFallback: true,
     noInfo: false,
-    hot: true,
+    // hot: true,
     stats: 'minimal',
-    open: true
+    open: true,
+    proxy: {
+      '/api': {
+        target: 'http://localhost:3000'
+      }
+    }
   },
   module: {
     rules: [
