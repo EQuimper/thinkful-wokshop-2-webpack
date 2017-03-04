@@ -1,1 +1,1 @@
-web: npm server:prod
+web: server:prod
