@@ -8,7 +8,7 @@
     "build": "yarn run clean && cross-env NODE_ENV=production webpack -p --config webpack.config.dev.js",
     "clean": "rimraf dist",
     "server": "cross-env NODE_ENV=development nodemon index.js",
-    "server:prod": "cross-env NODE_ENV=production node index.js"
+    "start": "cross-env NODE_ENV=production node index.js"
   },
   "dependencies": {
     "axios": "^0.15.3",
